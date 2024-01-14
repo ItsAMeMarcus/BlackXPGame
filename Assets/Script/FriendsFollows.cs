@@ -13,6 +13,9 @@ public class FriendsFollows : MonoBehaviour
     void Start()
     {
         Target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+
+        GameObject player = GameObject.FindGameObjectWithTag("Player");     
+        Physics2D.IgnoreCollision(player.GetComponent<Collider2D>(), GetComponent<Collider2D>());
     }
 
     // Update is called once per frame
@@ -25,9 +28,10 @@ public class FriendsFollows : MonoBehaviour
         }
     }
 
-    void OnCollisionEnter(Collision2D other) {
-        if( Target.gameObject.tag.Equals("Player") == true ){
-          collisionTime = Time.time;
-        }   
-    }
+    // void OnCollisionEnter(Collider collision){
+    //     if(collision.gameObject.tag == "Player")
+    //     {
+    //       Physics.IgnoreCollision(collider, GetComponent<Collider>());
+    //     }   
+    // }
 }
