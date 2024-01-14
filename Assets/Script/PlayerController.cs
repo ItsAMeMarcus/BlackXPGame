@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
 public class PlayerController : MonoBehaviour
 {
     [SerializeField]
     private float speed = 3f;
+    [SerializeField]
+    private Animator animator;
 
     private Rigidbody2D rb;
     private Vector2 moveDirection;
@@ -22,6 +23,19 @@ public class PlayerController : MonoBehaviour
         float vertical = Input.GetAxisRaw("Vertical");
 
         moveDirection = new Vector2(horizontal, vertical);
+
+        Debug.Log(animator);
+
+        if (moveDirection != Vector2.zero)
+        {
+            animator.SetFloat("Horizontal", horizontal);
+            animator.SetFloat("Vertical", vertical);
+            animator.SetBool("IsMoving", true);
+        }
+        else
+        {
+            animator.SetBool("IsMoving", false);
+        }
     }
 
     private void FixedUpdate()
